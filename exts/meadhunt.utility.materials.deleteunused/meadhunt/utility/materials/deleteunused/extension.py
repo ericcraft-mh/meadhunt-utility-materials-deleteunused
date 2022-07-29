@@ -2,7 +2,8 @@ __all__ = ["StageMaterialsDeleteUnused"]
 import omni.ext
 import omni.ui as ui
 import omni.kit.context_menu
-from pxr import UsdShade, Sdf
+import omni.usd
+from pxr import Usd, UsdShade, Sdf
 # Any class derived from `omni.ext.IExt` in top level module (defined in `python.modules` of `extension.toml`) will be
 # instantiated when extension gets enabled and `on_startup(ext_id)` will be called. Later when extension gets disabled
 # on_shutdown() is called.
@@ -34,12 +35,13 @@ class StageMaterialsDeleteUnused(omni.ext.IExt):
                 matList = UsdShade.MaterialBindingAPI(prim).GetDirectBindingRel().GetTargets()
                 if len(matList) != 0:
                     _usedMats = list(set(_usedMats + matList))
-                if prim.IsA(UsdShade.Material):
+                if prim.IsA(UsdShade.Material) and not omni.usd.check_ancestral(prim):
                     _allMats.append(prim.GetPath())
             _unusedMats = [x for x in _allMats if x not in _usedMats]
-            _unusedNames = [Sdf.Path(x).name for x in _unusedMats]
-            omni.kit.commands.execute('DeletePrims',paths=_unusedMats)
-            print("Deleted Materials: ",_unusedNames)
+            if len(_unusedMats) != 0:
+                _unusedNames = [Sdf.Path(x).name for x in _unusedMats]
+                omni.kit.commands.execute('DeletePrims',paths=_unusedMats)
+                print("Deleted Materials: ",_unusedNames)
         # Add context menu to omni.kit.widget.stage
         context_menu = omni.kit.context_menu.get_instance()
         if context_menu:
@@ -48,7 +50,6 @@ class StageMaterialsDeleteUnused(omni.ext.IExt):
             menu = {
                 "name": "Delete Unused Materials",
                 "glyph": "menu_delete.svg",
-                "show_fn": [context_menu.is_prim_selected],
                 "onclick_fn": on_unused,
                 "appear_after": appear_after,
             }
