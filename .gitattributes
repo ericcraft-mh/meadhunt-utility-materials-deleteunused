@@ -1,2 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+/exts/meadhunt.utility.materials.deleteunused/data/EricCraft_@EricCraft_MH.mp4 export-ignore
+/exts/meadhunt.utility.materials.deleteunused/data/EricCraft_@EricCraft_MH.png export-ignore

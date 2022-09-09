@@ -1,22 +1,28 @@
-# Extension Project Template
+# Mead & Hunt Delete Unused Materials
 
-This project was automatically generated.
+![Delete Unused Materials Screenshot](/exts/meadhunt.utility.materials.deleteunused/data/preview_deleteunused.png)
 
-- `app` - It is a folder link to the location of your *Omniverse Kit* based app.
-- `exts` - It is a folder where you can add new extensions. It was automatically added to extension search path. (Extension Manager -> Gear Icon -> Extension Search Path).
+## Inspiration
+`Delete Unused Materials` was created based on a request from the [Omniverse forums](https://forums.developer.nvidia.com/t/is-there-a-built-in-way-to-remove-unused-materials/220588).
 
-Open this folder using Visual Studio Code. It will suggest you to install few extensions that will make python experience better.
+It also provided me a chance to learning Python, USD, and Kit APIs/workflows.
 
-Look for "meadhunt.utility.materials.deleteunused" extension in extension manager and enable it. Try applying changes to any python files, it will hot-reload and you can observe results immediately.
+## About
+This tool was created so users can `Delete Unused Materials` from the scene. When new materials are applied to an object the old one remains in the scene. The tool skips materials in `References` and `Payloads` as they can only be deleted in the original file.
 
-Alternatively, you can launch your app from console with this folder added to search path and your extension enabled, e.g.:
+## Usage
+After installation the dialog can be opened by **Right-Clicking in the `Stage > Delete Unused Materials`**.
 
-```
-> app\omni.code.bat --ext-folder exts --enable company.hello.world
-```
+## Adding This Extension
+To add this extension to your Omniverse app:
+1. Go into: Extension Manager -> Gear Icon -> Extension Search Path
+2. Add this as a search path: `git://github.com/ericcraft-mh/meadhunt-utility-materials-deleteunused.git?branch=main&dir=exts`
 
-# App Link Setup
+## To-Do List
+- Custom Glyph in context menu.
+- Confirmation dialog with ability to deselect materials you don't want to remove.
 
+## App Link Setup
 If `app` folder link doesn't exist or broken it can be created again. For better developer experience it is recommended to create a folder link named `app` to the *Omniverse Kit* app installed from *Omniverse Launcher*. Convenience script to use is included.
 
 Run:
@@ -39,14 +45,7 @@ You can also just pass a path to create link to:
 > link_app.bat --path "C:/Users/bob/AppData/Local/ov/pkg/create-2021.3.4"
 ```
 
+## Contributing
+The source code for this repository is provided as-is, but I am accepting outside contributions.
 
-# Sharing Your Extensions
-
-This folder is ready to be pushed to any git repository. Once pushed direct link to a git repository can be added to *Omniverse Kit* extension search paths.
-
-Link might look like this: `git://github.com/ericcraft-mh/meadhunt-utility-materials-deleteunused.git?branch=main&dir=exts`
-
-Notice `exts` is repo subfolder with extensions. More information can be found in "Git URL as Extension Search Paths" section of developers manual.
-
-To add a link to your *Omniverse Kit* based app go into: Extension Manager -> Gear Icon -> Extension Search Path
-
+Issues, Feature Requests, and Pull Requests are welcomed.

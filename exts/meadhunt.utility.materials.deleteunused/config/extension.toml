@@ -11,6 +11,7 @@ description="Utility to delete unbound materials from the scene."
 
 # Path (relative to the root) or content of readme markdown file for UI.
 readme  = "docs/README.md"
+changelog = "docs/CHANGELOG.md"
 
 # URL of the extension source repository.
 repository = "https://github.com/ericcraft-mh/meadhunt-utility-materials-deleteunused"
@@ -21,6 +22,12 @@ category = "Other"
 # Keywords for the extension
 keywords = ["kit", "meadhunt","utility","materials","deleteunused"]
 
+# Preview image and icon. Folder named "data" automatically goes in git lfs (see .gitattributes file).
+# Preview image is shown in "Overview" of Extensions window. Screenshot of an extension might be a good preview image.
+preview_image = "data/preview_deleteunused.png"
+
+# Icon is shown in Extensions window, it is recommended to be square, of size 256x256.
+icon = "data/icon_deleteunused.svg"
 
 # Use omni.ui to build simple UI
 [dependencies]
